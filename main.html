@@ -488,3 +488,38 @@
       totalInSession = 0;
       t = Date.now();
       document.getElementById("sid").textContent = sid.slice(0, 8) + "…";
+      document.getElementById("sid").title = sid;
+      document.getElementById("stat-dot").classList.add("active");
+      document.getElementById("status-text").textContent = "Session active. Chat below.";
+      updateStats();
+    }
+
+    function reply(txt) {
+      var s = (txt || "").trim();
+      for (var i = 0; i < intentRules.length; i++) {
+        if (intentRules[i].p.test(s)) {
+          var replies = intentRules[i].r;
+          return replies[Math.floor(Math.random() * replies.length)];
+        }
+      }
+      return intentRules[intentRules.length - 1].r[0];
+    }
+
+    function add(role, body) {
+      var d = document.createElement("div");
+      d.className = "msg " + role;
+      d.innerHTML = "<div class=\"meta\">" + (role === "user" ? "You" : "Static") + "</div><div>" + escapeHtml(body) + "</div>";
+      document.getElementById("msgs").appendChild(d);
+      d.parentNode.scrollTop = d.parentNode.scrollHeight;
+    }
+
+    function escapeHtml(s) {
+      var div = document.createElement("div");
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    function updateStats() {
+      document.getElementById("stat-msgs").textContent = n;
+      document.getElementById("stat-total").textContent = totalInSession;
+      var countEl = document.getElementById("char-count");
