@@ -313,3 +313,38 @@
     .tips-list li {
       font-size: 0.875rem;
       color: var(--text-muted);
+      padding: 0.4rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .tips-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-q {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 2rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--border);
