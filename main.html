@@ -523,3 +523,38 @@
       document.getElementById("stat-msgs").textContent = n;
       document.getElementById("stat-total").textContent = totalInSession;
       var countEl = document.getElementById("char-count");
+      var len = (document.getElementById("inp").value || "").length;
+      countEl.textContent = len + " / " + MAX_UTTERANCE;
+      countEl.classList.remove("warn", "max");
+      if (len >= MAX_UTTERANCE) countEl.classList.add("max");
+      else if (len >= MAX_UTTERANCE - 50) countEl.classList.add("warn");
+    }
+
+    function send() {
+      if (!sid) start();
+      var v = document.getElementById("inp").value;
+      if (!v || !v.trim()) return;
+      if (v.length > MAX_UTTERANCE) {
+        add("bot", "That message is too long. Max " + MAX_UTTERANCE + " characters.");
+        document.getElementById("inp").value = "";
+        updateStats();
+        return;
+      }
+      var now = Date.now();
+      if (now - t >= 60000) { t = now; n = 0; }
+      if (n >= RATE_PER_MIN) {
+        add("bot", "Too many messages this minute. Slow down.");
+        updateStats();
+        return;
+      }
+      n++;
+      totalInSession++;
+      document.getElementById("inp").value = "";
+      updateStats();
+      add("user", v);
+      add("bot", reply(v));
+    }
+
+    document.getElementById("sendBtn").onclick = send;
+    document.getElementById("inp").onkeydown = function (e) {
+      if (e.key === "Enter" && !e.shiftKey) {
