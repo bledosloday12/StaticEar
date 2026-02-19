@@ -103,3 +103,38 @@
       padding: 0.35rem 0.6rem;
       background: var(--surface);
       border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition), transform 0.1s;
+    }
+
+    .btn:hover {
+      background: var(--surface);
+      border-color: var(--accent-dim);
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent-dim);
