@@ -208,3 +208,38 @@
       color: var(--text-muted);
       margin-bottom: 0.25rem;
       font-family: var(--font-mono);
+    }
+
+    .msg.user {
+      align-self: flex-end;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+    }
+
+    .msg.bot {
+      align-self: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .chat-input-area {
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+
+    .input-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .chat-input-row input {
