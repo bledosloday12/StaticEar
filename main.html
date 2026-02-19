@@ -453,3 +453,38 @@
     var intentRules = [
       { p: /^(hi|hello|hey|howdy|yo)\s*!?\s*$/i, r: ["Hi there. What can I do for you?", "Hello. How are you today?", "Hey. Need any help?"] },
       { p: /^(hola|ciao|salut|namaste)\s*!?\s*$/i, r: ["Hi. What can I do for you?", "Hello. How can I help?"] },
+      { p: /^(good\s+)?(morning|mornin')\s*!?\s*$/i, r: ["Good morning. Ready when you are.", "Morning. What's on your mind?"] },
+      { p: /^(good\s+)?(evening|night)\s*!?\s*$/i, r: ["Good evening. How can I help?", "Evening. Ask me anything."] },
+      { p: /thanks?|thank you|ty|thx/i, r: ["You're welcome.", "Glad to help.", "Anytime."] },
+      { p: /bye|goodbye|see ya|later|gtg/i, r: ["Bye. Come back if you need anything.", "See you later.", "Take care."] },
+      { p: /help|support|assist/i, r: ["I'm here to chat. Tell me what you need.", "Sure. What do you want help with?", "I can try to help. What's the issue?"] },
+      { p: /who are you|what are you|are you a bot|your name/i, r: ["I'm Static, a chatter bot. I reply from fixed rules and intents.", "Static here — a bot. I match what you say to predefined replies."] },
+      { p: /what can you do|what do you do|your purpose|capabilities/i, r: ["I match your messages to intents and send back one of several possible replies.", "I run in a session: you talk, I reply from a set of rules.", "Chatter only: intent matching and session-scoped replies."] },
+      { p: /status|ping|alive|running/i, r: ["I'm running. Session-based chatter contract.", "Status: active. Send me a message.", "Alive. Static realm."] },
+      { p: /what\s+(is|are|do|does|can)\b/i, r: ["I'm not sure of the full context. Can you narrow it down?", "That depends on what you mean. Tell me more.", "Good question. I'll need a bit more detail."] },
+      { p: /how\s+(do|does|can)\b/i, r: ["There are a few ways. What are you trying to do?", "I can walk you through it. What exactly?", "It depends on the case. More details?"] },
+      { p: /^(yes|yeah|yep|ok|okay|sure)\s*!?\s*$/i, r: ["Got it.", "Understood.", "Alright."] },
+      { p: /^(no|nope|nah)\s*!?\s*$/i, r: ["Understood.", "No problem.", "Alright."] },
+      { p: /sorry|apologize|my bad|oops/i, r: ["No worries.", "It's fine.", "All good."] },
+      { p: /(perfect|excellent|awesome|good job)/i, r: ["Thanks.", "Glad it helped.", "Appreciate it."] },
+      { p: /(joke|funny|make me laugh)/i, r: ["Why did the bot go to school? To improve its learning rate.", "I'm a static contract — my jokes are constant."] },
+      { p: /.*/, r: ["I'm not sure how to reply to that. Try rephrasing.", "I didn't match that to an intent. Want to try something else?", "No specific rule for that. Ask in another way?"] }
+    ];
+
+    var sid = null;
+    var n = 0;
+    var totalInSession = 0;
+    var t = Date.now();
+
+    function id() {
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        return (c === "x" ? Math.random() * 16 | 0 : (Math.random() * 16 | 0) & 3 | 8).toString(16);
+      });
+    }
+
+    function start() {
+      sid = id();
+      n = 0;
+      totalInSession = 0;
+      t = Date.now();
+      document.getElementById("sid").textContent = sid.slice(0, 8) + "…";
