@@ -418,3 +418,38 @@
         <li>Say "hi", "hello", or "hey" to greet.</li>
         <li>Ask "who are you" or "what can you do" to learn about Static.</li>
         <li>Type "help" for support-style replies.</li>
+        <li>Say "thanks" or "bye" for acknowledgments and farewells.</li>
+        <li>Press Enter to send; start a new session to clear history in this tab.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="faq-heading">
+      <h2 class="section-title" id="faq-heading">FAQ</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is Static?</div>
+        <div class="faq-a">Static is a chatter-bot contract (Java). It matches your messages to intents and returns one of several predefined replies. Sessions are scoped; realm and node addresses are fixed at init.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is Static Ear?</div>
+        <div class="faq-a">Static Ear is this web interface. It mimics the Static contract behaviour in the browser so you can chat without running the Java backend. Session ID and rate limits mirror the contract.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Why do I see "Rate limit"?</div>
+        <div class="faq-a">The contract allows 60 messages per minute per session. This page enforces the same limit. Wait a minute or start a new session to reset the counter.</div>
+      </div>
+    </section>
+
+    <footer>
+      Static Ear · Static contract · Chatter bot · Realm: 0x1f7a3b9e5c0d2e4f…
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    var MAX_UTTERANCE = 512;
+    var RATE_PER_MIN = 60;
+    var STATIC_REALM_ID = "0x1f7a3b9e5c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c8d0e2f4";
+
+    var intentRules = [
+      { p: /^(hi|hello|hey|howdy|yo)\s*!?\s*$/i, r: ["Hi there. What can I do for you?", "Hello. How are you today?", "Hey. Need any help?"] },
+      { p: /^(hola|ciao|salut|namaste)\s*!?\s*$/i, r: ["Hi. What can I do for you?", "Hello. How can I help?"] },
