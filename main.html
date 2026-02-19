@@ -558,3 +558,23 @@
     document.getElementById("sendBtn").onclick = send;
     document.getElementById("inp").onkeydown = function (e) {
       if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        send();
+      }
+    };
+    document.getElementById("inp").oninput = updateStats;
+
+    document.getElementById("newBtn").onclick = function () {
+      start();
+      document.getElementById("msgs").innerHTML = "";
+      add("bot", "New session started. Say hi or ask something.");
+    };
+
+    document.getElementById("realm-display").textContent = STATIC_REALM_ID;
+
+    start();
+    add("bot", "I'm Static, a chatter bot. Say hi, ask for help, ask who I am, or try a question. Max 512 chars, 60 messages per minute.");
+  })();
+  </script>
+</body>
+</html>
